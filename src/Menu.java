@@ -3,8 +3,8 @@ import java.io.*;
 public class Menu {
     
     public static void  printMenu(){
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
+        // System.out.print("\033[H\033[2J");
+        // System.out.flush();
         System.out.println("What do you want?");
         System.out.println("1: Add a new word");
         System.out.println("2: Start a new remember mode game");
@@ -23,10 +23,10 @@ public class Menu {
 
             switch (mainMenu) {
                 case "1":
-                    WriteNewWord.startWrite(pathEnglish, pathAnother);
+                    WriteNewWord.startWrite(pathDic, pathEnglish, pathAnother);
                     startMenu(pathDic, pathEnglish, pathAnother);
                 case "2":
-                    ReadAndGame.startRemember(pathEnglish);
+                    ReadAndGame.startRemember(pathDic, pathEnglish, pathAnother);
                     startMenu(pathDic, pathEnglish, pathAnother);
                 case "3":
                     ReadAndGame.startTranslate(pathEnglish, pathAnother);

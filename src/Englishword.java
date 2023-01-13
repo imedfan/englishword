@@ -1,15 +1,14 @@
 
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Englishword {
     public static void main(String[] args) throws IllegalAccessException, IOException {
-        String pathEnglish = "C:\\Users\\Home\\dev\\englishwaord\\src\\aaa.txt";
-        String pathAnother = "C:\\Users\\Home\\dev\\englishwaord\\src\\bbb.txt";
-
-
+        // String pathEnglish = "C:\\Users\\Home\\dev\\englishwaord\\src\\aaa.txt";
+        String pathDic = "src\\dic\\";
+        String pathEnglish = "src\\dic\\english.txt";
+        String pathAnother = "src\\dic\\another.txt";
 
         System.out.println("What do you want?");
         System.out.println("1: Add a new word");
@@ -31,7 +30,7 @@ public class Englishword {
                 ReadAndGame.startTranslate(pathEnglish, pathAnother);
                 break;
             case "4":
-                Setting.mainMenu(pathEnglish, pathAnother);
+                Setting.mainMenu(pathDic, pathEnglish, pathAnother);
         }
 
     }

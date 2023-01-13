@@ -3,8 +3,6 @@ import java.io.*;
 
 public class ReadAndGame {
 
-    // TODO autoexit game if file ends
-
     // Remember mode: y/n else you remember word
     public static void startRemember(String path) throws IllegalAccessException {
         String s = new String();

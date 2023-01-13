@@ -7,6 +7,8 @@ import java.nio.file.*;
 public class Setting {
 
     public static void mainMenu(String pathDic, String pathEnglish, String pathAnother) throws IOException {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
         System.out.println("Setting");
         System.out.println("--------------------------------");
         System.out.println(" ");

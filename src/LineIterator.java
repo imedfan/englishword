@@ -1,5 +1,4 @@
 
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.Iterator;
@@ -23,7 +22,6 @@ public class LineIterator implements Iterator {
         } else {
             bufferedReader = new BufferedReader(reader);
         }
-
 
     }
 

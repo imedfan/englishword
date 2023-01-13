@@ -2,12 +2,11 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
-import javax.annotation.processing.SupportedAnnotationTypes;
+import java.nio.file.*;
 
 public class Setting {
 
-    public static void mainMenu(String pathEnglish, String pathAnother) throws IOException{
+    public static void mainMenu(String pathDic, String pathEnglish, String pathAnother) throws IOException {
         System.out.println("Setting");
         System.out.println("--------------------------------");
         System.out.println(" ");
@@ -23,47 +22,65 @@ public class Setting {
         BufferedReader bfsetting = new BufferedReader(new InputStreamReader(System.in));
         String settingChoose = bfsetting.readLine();
 
-        switch(settingChoose){
-            case "1": 
-            System.out.println("Are you sure you want to delete?");
-            System.out.println("You should print DELETE");
-            BufferedReader bfsureDelete = new BufferedReader(new InputStreamReader(System.in));
-            String sureDelete = bfsureDelete.readLine();
-            if (sureDelete.equals(sureAnswer) || sureDelete.equals(sureAnswer2) || sureDelete.equals(sureAnswer3)){
-                deleteDicFile(pathEnglish, pathAnother);
+        switch (settingChoose) {
+            case "1":
                 System.out.print("\033[H\033[2J");
                 System.out.flush();
-                System.out.println("You dictonary deleted successfully");
-            } else {
-                System.out.println("You don't print DELETE. Please try again");
-            }
-            break;
-            case "2": createDicFile(pathEnglish, pathAnother);
-            break;
+                System.out.println("Are you sure you want to delete?");
+                System.out.println("You should print DELETE");
+                System.out.println(" ");
+                BufferedReader bfsureDelete = new BufferedReader(new InputStreamReader(System.in));
+                String sureDelete = bfsureDelete.readLine();
+                if (sureDelete.equals(sureAnswer) || sureDelete.equals(sureAnswer2) || sureDelete.equals(sureAnswer3)) {
+                    deleteDicFile(pathDic, pathEnglish, pathAnother);
+                    System.out.print("\033[H\033[2J");
+                    System.out.flush();
+                    System.out.println("You dictonary deleted successfully");
+                } else {
+                    System.out.println("You don't print DELETE. Please try again");
+                }
+                break;
+            case "2":
+                createDicFile(pathDic, pathEnglish, pathAnother);
+                break;
         }
     }
 
-    public static void deleteDicFile(String pathEnglish, String pathAnother){
+    public static void deleteDicFile(String pathDic, String pathEnglish, String pathAnother) {
+        File pathD = new File(pathDic);
         File fileEnglish = new File(pathEnglish);
         File fileAnother = new File(pathAnother);
-
-        fileEnglish.delete();
-        fileAnother.delete();
-    } 
-
-    public static void createDicFile(String pathEnglish, String pathAnother) throws IOException{
-        File fileEnglish = new File(pathEnglish);
-        File fileAnother = new File(pathAnother);
-
-        if (fileEnglish.exists() == true || fileAnother.exists() == true){
-            System.out.println("Files already exists");
+        if (fileEnglish.exists() == true || fileAnother.exists() == true) {
+            fileEnglish.delete();
+            fileAnother.delete();
+            pathD.delete();
         } else {
-            fileEnglish.createNewFile();
-            fileAnother.createNewFile();   
+            System.out.println("You can't delete not exist file");
         }
 
+    }
 
-    
-    } 
-    
+    public static void createDicFile(String pathDic, String pathEnglish, String pathAnother) throws IOException {
+
+        File pathD = new File(pathDic);
+        pathD.mkdir();
+        File fileEnglish = new File(pathEnglish);
+        File fileAnother = new File(pathAnother);
+
+        if (fileEnglish.exists() == true || fileAnother.exists() == true) {
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
+            System.out.println("Files already exists");
+            System.out.println(" ");
+        } else {
+            fileEnglish.createNewFile();
+            fileAnother.createNewFile();
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
+            System.out.println("New files created");
+            System.out.println(" ");
+        }
+
+    }
+
 }

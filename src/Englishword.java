@@ -1,5 +1,3 @@
-
-
 import game.Menu;
 import java.io.IOException;
 

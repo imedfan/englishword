@@ -1,4 +1,5 @@
 package game;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -7,7 +8,8 @@ import java.nio.file.*;
 
 public class Setting {
 
-    public static void mainMenu(String pathDic, String pathEnglish, String pathAnother) throws IOException {
+    public static void mainMenu(String pathDic, String pathEnglish, String pathAnother)
+            throws IOException, IllegalAccessException {
         System.out.print("\033[H\033[2J");
         System.out.flush();
         System.out.println("Setting");
@@ -17,7 +19,7 @@ public class Setting {
         System.out.println(" ");
         System.out.println("1: Create dictonary file");
         System.out.println("2: Delete dictonary file");
-
+        System.out.println("0: Back to menu");
 
         String sureAnswer = "DELETE";
         String sureAnswer2 = "delete";
@@ -37,15 +39,20 @@ public class Setting {
                 String sureDelete = bfsureDelete.readLine();
                 if (sureDelete.equals(sureAnswer) || sureDelete.equals(sureAnswer2) || sureDelete.equals(sureAnswer3)) {
                     deleteDicFile(pathDic, pathEnglish, pathAnother);
+                } else {
                     System.out.print("\033[H\033[2J");
                     System.out.flush();
-                    System.out.println("You dictonary deleted successfully");
-                } else {
                     System.out.println("You don't print DELETE. Please try again");
+                    System.out.println(" ");
                 }
                 break;
             case "1":
                 createDicFile(pathDic, pathEnglish, pathAnother);
+                break;
+            case "0":
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+                Menu.startMenu(pathDic, pathEnglish, pathAnother);
                 break;
         }
     }
@@ -58,8 +65,16 @@ public class Setting {
             fileEnglish.delete();
             fileAnother.delete();
             pathD.delete();
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
+            System.out.println("You dictonary deleted successfully");
+            System.out.println(" ");
         } else {
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
             System.out.println("You can't delete not exist file");
+            System.out.println(" ");
+
         }
 
     }

@@ -14,7 +14,7 @@ public class Menu {
         System.out.println(" ");
     }
 
-    public static void startMenu(String pathDic, String pathEnglish, String pathAnother) throws IOException, IllegalAccessException{
+    public static void startMenu(String pathDic, String pathEnglish, String pathAnother ) throws IOException, IllegalAccessException{
         String mainMenu = new String();
         do{
             printMenu();

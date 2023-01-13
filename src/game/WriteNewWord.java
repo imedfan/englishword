@@ -10,7 +10,8 @@ public class WriteNewWord {
 
     // TODO add support PATH instead of FILE
 
-    public static void startWrite(String pathDic, String pathEnglish, String pathAnother) throws IOException {
+    public static void startWrite(String pathDic, String pathEnglish, String pathAnother)
+            throws IOException, IllegalAccessException {
 
         File fileEnglish = new File(pathEnglish);
         File fileAnother = new File(pathAnother);
@@ -34,37 +35,51 @@ public class WriteNewWord {
 
                 System.out.print("\033[H\033[2J");
                 System.out.flush();
-                System.out.println("Write English world: ");
+                System.out.println("Write English world: (or press CC for cancel) ");
                 System.out.println(" ");
 
                 BufferedReader bfenglish = new BufferedReader(new InputStreamReader(System.in));
                 String englishWord = bfenglish.readLine();
 
-                writeEglish.write(englishWord + System.getProperty("line.separator"));
+                if (englishWord.equals("CC")) {
+                    System.out.print("\033[H\033[2J");
+                    System.out.flush();
+                    Menu.startMenu(pathDic, pathEnglish, pathAnother);
+                } else {
 
-                writeEglish.flush();
+                    System.out.println(" ");
+                    System.out.println("Write Another world: ");
+                    System.out.println(" ");
 
-                writeEglish.close();
+                    BufferedReader bfAnother = new BufferedReader(new InputStreamReader(System.in, "Cp1251"));
+                    String anotherWord = bfAnother.readLine();
 
-                System.out.println(" ");
-                System.out.println("Write Another world: ");
-                System.out.println(" ");
+                    if (anotherWord.equals("CC")) {
+                        System.out.print("\033[H\033[2J");
+                        System.out.flush();
+                        Menu.startMenu(pathDic, pathEnglish, pathAnother);
+                    } else {
 
-                BufferedReader bfAnother = new BufferedReader(new InputStreamReader(System.in, "Cp1251"));
-                String anotherWord = bfAnother.readLine();
+                        writeEglish.write(englishWord + System.getProperty("line.separator"));
 
-                writeAnother.write(anotherWord + System.getProperty("line.separator"));
-                // writeAnother.println(anotherWord);
+                        writeEglish.flush();
 
-                writeAnother.flush();
+                        writeEglish.close();
+                        writeAnother.write(anotherWord + System.getProperty("line.separator"));
+                        // writeAnother.println(anotherWord);
 
-                writeAnother.close();
+                        writeAnother.flush();
 
-                System.out.print("\033[H\033[2J");
-                System.out.flush();
-                System.out.println("Words " + englishWord + " and " + anotherWord + " has been written");
-                System.out.println(" ");
+                        writeAnother.close();
 
+                        System.out.print("\033[H\033[2J");
+                        System.out.flush();
+                        System.out.println("Words " + englishWord + " and " + anotherWord + " has been written");
+                        System.out.println(" ");
+
+                    }
+
+                }
 
             } catch (IOException ioe) {
                 System.out.println(ioe.getMessage());

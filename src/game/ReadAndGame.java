@@ -6,7 +6,6 @@ import service.LineIterator;
 
 public class ReadAndGame {
 
-    // Remember mode: y/n else you remember word
     public static void startRemember(String pathDic, String pathEnglish, String pathAnother)
             throws IllegalAccessException {
         String s = new String();
@@ -63,6 +62,12 @@ public class ReadAndGame {
 
                     default:
                         System.out.println("You need press Y or N");
+
+                    case "CC":
+                        System.out.print("\033[H\033[2J");
+                        System.out.flush();
+                        Menu.startMenu(pathDic, pathEnglish, pathAnother);
+
                 }
             }
 
@@ -130,6 +135,10 @@ public class ReadAndGame {
                         System.out.println("You NiceCount: " + niceCount + ". " + "You ShitCount: " + shitCount + ". ");
                         System.out.println(" ");
                         System.exit(0);
+                    } else if (answer.equals("CC")) {
+                        System.out.print("\033[H\033[2J");
+                        System.out.flush();
+                        Menu.startMenu(answer, pathEnglish, pathAnother);
                     } else {
                         shitCount++;
                         System.out.print("\033[H\033[2J");

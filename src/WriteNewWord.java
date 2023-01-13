@@ -9,58 +9,72 @@ public class WriteNewWord {
 
     // TODO add support PATH instead of FILE
 
-    public static void startWrite(String pathEnglish, String pathAnother) {
-        // public static void startWrite(){
-        try {
+    public static void startWrite(String pathDic, String pathEnglish, String pathAnother) throws IOException {
 
-            
-            File fileEnglish = new File(pathEnglish);
-            fileEnglish.createNewFile(); // если файл существует - команда игнорируется
-            FileOutputStream fileOutputStreamEnglish = new FileOutputStream(fileEnglish, true);
-            // false -> true, если надо продолжать писать в файл при его наличии, с false
-            // файл будет очищен
-            Writer writeEglish = new OutputStreamWriter(fileOutputStreamEnglish, StandardCharsets.UTF_8);
+        File fileEnglish = new File(pathEnglish);
+        File fileAnother = new File(pathAnother);
 
-            File fileAnother = new File(pathAnother);
-            fileAnother.createNewFile(); // если файл существует - команда игнорируется
-            FileOutputStream fileOutputStreamAnother = new FileOutputStream(fileAnother, true);
-            // false -> true, если надо продолжать писать в файл при его наличии, с false
-            // файл будет очищен
-            Writer writeAnother = new OutputStreamWriter(fileOutputStreamAnother);
+        if (fileEnglish.exists() == true || fileAnother.exists() == true) {
+            try {
 
-            // FileWriter writeEglish = new FileWriter(pathEnglish);
-            // FileWriter writeAnother = new FileWriter(pathAnother, "Cp1251");
-            // PrintWriter writeAnother = new PrintWriter(pathAnother, "Cp1251");
+                FileOutputStream fileOutputStreamEnglish = new FileOutputStream(fileEnglish, true);
+                // false -> true, если надо продолжать писать в файл при его наличии, с false
+                // файл будет очищен
+                Writer writeEglish = new OutputStreamWriter(fileOutputStreamEnglish, StandardCharsets.UTF_8);
 
-            System.out.println("Write English world: ");
+                FileOutputStream fileOutputStreamAnother = new FileOutputStream(fileAnother, true);
+                // false -> true, если надо продолжать писать в файл при его наличии, с false
+                // файл будет очищен
+                Writer writeAnother = new OutputStreamWriter(fileOutputStreamAnother);
 
-            BufferedReader bfenglish = new BufferedReader(new InputStreamReader(System.in));
-            String englishWord = bfenglish.readLine();
+                // FileWriter writeEglish = new FileWriter(pathEnglish);
+                // FileWriter writeAnother = new FileWriter(pathAnother, "Cp1251");
+                // PrintWriter writeAnother = new PrintWriter(pathAnother, "Cp1251");
 
-            System.out.println(englishWord);
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+                System.out.println("Write English world: ");
+                System.out.println(" ");
 
-            writeEglish.write(englishWord + System.getProperty("line.separator"));
+                BufferedReader bfenglish = new BufferedReader(new InputStreamReader(System.in));
+                String englishWord = bfenglish.readLine();
 
-            writeEglish.flush();
+                writeEglish.write(englishWord + System.getProperty("line.separator"));
 
-            writeEglish.close();
+                writeEglish.flush();
 
-            System.out.println("Write Another world: ");
+                writeEglish.close();
 
-            BufferedReader bfAnother = new BufferedReader(new InputStreamReader(System.in, "Cp1251"));
-            String anotherWord = bfAnother.readLine();
+                System.out.println(" ");
+                System.out.println("Write Another world: ");
+                System.out.println(" ");
 
-            System.out.println(anotherWord);
+                BufferedReader bfAnother = new BufferedReader(new InputStreamReader(System.in, "Cp1251"));
+                String anotherWord = bfAnother.readLine();
 
-            writeAnother.write(anotherWord + System.getProperty("line.separator"));
-            // writeAnother.println(anotherWord);
+                writeAnother.write(anotherWord + System.getProperty("line.separator"));
+                // writeAnother.println(anotherWord);
 
-            writeAnother.flush();
+                writeAnother.flush();
 
-            writeAnother.close();
+                writeAnother.close();
 
-        } catch (IOException ioe) {
-            System.out.println(ioe.getMessage());
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+                System.out.println("Words " + englishWord + " and " + anotherWord + " has been written");
+                System.out.println(" ");
+
+
+            } catch (IOException ioe) {
+                System.out.println(ioe.getMessage());
+            }
+        } else {
+
+            Setting.createDicFile(pathDic, pathEnglish, pathAnother);
+
+            WriteNewWord.startWrite(pathDic, pathEnglish, pathAnother);
+
         }
+
     }
 }

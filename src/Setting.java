@@ -14,8 +14,9 @@ public class Setting {
         System.out.println(" ");
         System.out.println("What do you want?");
         System.out.println(" ");
-        System.out.println("1: Delete dictonary file");
-        System.out.println("2: Create dictonary file");
+        System.out.println("1: Create dictonary file");
+        System.out.println("2: Delete dictonary file");
+
 
         String sureAnswer = "DELETE";
         String sureAnswer2 = "delete";
@@ -25,7 +26,7 @@ public class Setting {
         String settingChoose = bfsetting.readLine();
 
         switch (settingChoose) {
-            case "1":
+            case "2":
                 System.out.print("\033[H\033[2J");
                 System.out.flush();
                 System.out.println("Are you sure you want to delete?");
@@ -42,7 +43,7 @@ public class Setting {
                     System.out.println("You don't print DELETE. Please try again");
                 }
                 break;
-            case "2":
+            case "1":
                 createDicFile(pathDic, pathEnglish, pathAnother);
                 break;
         }
@@ -79,7 +80,7 @@ public class Setting {
             fileAnother.createNewFile();
             System.out.print("\033[H\033[2J");
             System.out.flush();
-            System.out.println("New files created");
+            System.out.println("New dictonary files created");
             System.out.println(" ");
         }
 

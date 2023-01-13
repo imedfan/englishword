@@ -4,10 +4,11 @@ import java.io.*;
 public class ReadAndGame {
 
     // Remember mode: y/n else you remember word
-    public static void startRemember(String path) throws IllegalAccessException {
+    public static void startRemember(String pathDic, String pathEnglish, String pathAnother)
+            throws IllegalAccessException {
         String s = new String();
         try {
-            File file = new File(path);
+            File file = new File(pathEnglish);
 
             var fr = new FileReader(file);
 
@@ -21,9 +22,12 @@ public class ReadAndGame {
             while (lineIterator.hasNext() == true) {
 
                 s = lineIterator.nextLine();
-                System.out.println(s);
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
                 System.out.println(" ");
                 System.out.println("Do you know this word?");
+                System.out.println(" ");
+                System.out.println(s);
                 System.out.println(" ");
 
                 BufferedReader bfanswer = new BufferedReader(new InputStreamReader(System.in));
@@ -53,6 +57,9 @@ public class ReadAndGame {
                         System.out.println("You NiceCount: " + niceCount + ". " + "You ShitCount: " + shitCount + ". ");
                         System.out.println(" ");
                         System.exit(0);
+
+                    default:
+                        System.out.println("You need press Y or N");
                 }
             }
 
@@ -62,11 +69,14 @@ public class ReadAndGame {
                 System.out.println("Words run out");
                 System.out.println("You NiceCount: " + niceCount + ". " + "You ShitCount: " + shitCount + ". ");
                 System.out.println(" ");
-                System.exit(0);
+                Menu.startMenu(pathDic, pathEnglish, pathAnother);
             }
 
         } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
+            System.out.println("You need to create a dictonary and add new words for learn");
+            System.out.println(" ");
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
@@ -74,66 +84,76 @@ public class ReadAndGame {
 
     public static void startTranslate(String pathEnglish, String pathAnother)
             throws IllegalAccessException, IOException {
-        File fileEnglish = new File(pathEnglish);
-        var frEnglish = new FileReader(fileEnglish);
-        BufferedReader readerEnglish = new BufferedReader(frEnglish);
-        LineIterator lineIteratorEnglish = new LineIterator(readerEnglish);
 
-        File fileAnother = new File(pathAnother);
-        var frAnother = new FileReader(fileAnother);
-        BufferedReader readerAnother = new BufferedReader(frAnother);
-        LineIterator lineIteratorAnother = new LineIterator(readerAnother);
+        try {
+            File fileEnglish = new File(pathEnglish);
+            var frEnglish = new FileReader(fileEnglish);
+            BufferedReader readerEnglish = new BufferedReader(frEnglish);
+            LineIterator lineIteratorEnglish = new LineIterator(readerEnglish);
 
-        int niceCount = 0;
-        int shitCount = 0;
+            File fileAnother = new File(pathAnother);
+            var frAnother = new FileReader(fileAnother);
+            BufferedReader readerAnother = new BufferedReader(frAnother);
+            LineIterator lineIteratorAnother = new LineIterator(readerAnother);
 
-        start: while (lineIteratorEnglish.hasNext() == true) {
+            int niceCount = 0;
+            int shitCount = 0;
 
-            String wordEnglish = lineIteratorEnglish.nextLine();
+            start: while (lineIteratorEnglish.hasNext() == true) {
 
-            while (lineIteratorAnother.hasNext()) {
-                String wordAnother = lineIteratorAnother.nextLine();
+                String wordEnglish = lineIteratorEnglish.nextLine();
 
-                System.out.println(wordEnglish);
-                System.out.println(" ");
-                System.out.println("Do you know translate this word?");
-                System.out.println(" ");
+                while (lineIteratorAnother.hasNext()) {
+                    String wordAnother = lineIteratorAnother.nextLine();
 
-                BufferedReader bfTranslateAnswer = new BufferedReader(new InputStreamReader(System.in));
-                String answer = bfTranslateAnswer.readLine();
-
-                if (answer.equals(wordAnother)) {
-                    niceCount++;
-                    System.out.print("\033[H\033[2J");
-                    System.out.flush();
-                    System.out.println("Yes! Next ->");
+                    System.out.println(wordEnglish);
                     System.out.println(" ");
-                    continue start;
-                } else if (answer.equals("e")) {
-                    System.out.print("\033[H\033[2J");
-                    System.out.flush();
-                    System.out.println("You NiceCount: " + niceCount + ". " + "You ShitCount: " + shitCount + ". ");
+                    System.out.println("Do you know translate this word?");
                     System.out.println(" ");
-                    System.exit(0);
-                } else {
-                    shitCount++;
-                    System.out.print("\033[H\033[2J");
-                    System.out.flush();
-                    System.out.println("Shit! Next ->");
-                    System.out.println(" ");
-                    continue start;
+
+                    BufferedReader bfTranslateAnswer = new BufferedReader(new InputStreamReader(System.in));
+                    String answer = bfTranslateAnswer.readLine();
+
+                    if (answer.equals(wordAnother)) {
+                        niceCount++;
+                        System.out.print("\033[H\033[2J");
+                        System.out.flush();
+                        System.out.println("Yes! Next ->");
+                        System.out.println(" ");
+                        continue start;
+                    } else if (answer.equals("e")) {
+                        System.out.print("\033[H\033[2J");
+                        System.out.flush();
+                        System.out.println("You NiceCount: " + niceCount + ". " + "You ShitCount: " + shitCount + ". ");
+                        System.out.println(" ");
+                        System.exit(0);
+                    } else {
+                        shitCount++;
+                        System.out.print("\033[H\033[2J");
+                        System.out.flush();
+                        System.out.println("Shit! Next ->");
+                        System.out.println(" ");
+                        continue start;
+                    }
                 }
+
             }
 
-        }
-
-        while (lineIteratorEnglish.hasNext() == false) {
+            while (lineIteratorEnglish.hasNext() == false) {
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+                System.out.println("Words run out");
+                System.out.println("You NiceCount: " + niceCount + ". " + "You ShitCount: " + shitCount + ". ");
+                System.out.println(" ");
+                System.exit(0);
+            }
+        } catch (FileNotFoundException e) {
             System.out.print("\033[H\033[2J");
             System.out.flush();
-            System.out.println("Words run out");
-            System.out.println("You NiceCount: " + niceCount + ". " + "You ShitCount: " + shitCount + ". ");
+            System.out.println("You need to create a dictonary and add new words for learn");
             System.out.println(" ");
-            System.exit(0);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
         }
 
     }

@@ -1,7 +1,6 @@
 
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -29,7 +28,7 @@ public class Englishword {
                 ReadAndGame.startRemember(pathEnglish);
                 break;
             case "3":
-                ReadAndGame.startTranslate();
+                ReadAndGame.startTranslate(pathEnglish, pathAnother);
                 break;
             case "4":
                 Setting.mainMenu(pathEnglish, pathAnother);

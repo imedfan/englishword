@@ -46,9 +46,13 @@ public class Setting {
     public static void deleteDicFile(String pathEnglish, String pathAnother){
         File fileEnglish = new File(pathEnglish);
         File fileAnother = new File(pathAnother);
+        if(fileEnglish.exists() == true || fileAnother.exists() == true){
+            fileEnglish.delete();
+            fileAnother.delete();
+        } else {
+            System.out.println("You can't delete not exist file");
+        }
 
-        fileEnglish.delete();
-        fileAnother.delete();
     } 
 
     public static void createDicFile(String pathEnglish, String pathAnother) throws IOException{

@@ -21,6 +21,8 @@ public class ReadAndGame {
             int niceCount = 0;
             int shitCount = 0;
 
+            if (lineIterator.hasNext() == true){
+                
             while (lineIterator.hasNext() == true) {
 
                 s = lineIterator.nextLine();
@@ -79,6 +81,14 @@ public class ReadAndGame {
                 System.out.println(" ");
                 Menu.startMenu(pathDic, pathEnglish, pathAnother);
             }
+
+            } else {
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+                System.out.println("You need to add new words to the dictonary");
+                System.out.println(" ");
+            }
+
 
         } catch (FileNotFoundException e) {
             System.out.print("\033[H\033[2J");

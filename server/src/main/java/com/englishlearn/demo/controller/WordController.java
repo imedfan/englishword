@@ -43,18 +43,18 @@ public class WordController {
         wordService.deleteWord(id);
     }
 
+    // http://localhost:8080/all-word/edit/1?englishWord=ahola&translatedWord=loha
+
     @PatchMapping("/all-word/edit/{id}")
     public Word editWord(@PathVariable Long id,
             @RequestParam(value = "englishWord", required = true) String englishWord,
             @RequestParam(value = "translatedWord", required = true) String translatedWord) {
 
-                Word word = wordService.getById(id);
-                word.setEnglishWord(englishWord);
-                word.setTranslatedWord(translatedWord);
-                return wordService.editWord(word);
+        Word word = wordService.getById(id);
+        word.setEnglishWord(englishWord);
+        word.setTranslatedWord(translatedWord);
+        return wordService.editWord(word);
 
     }
-
-    // @RequestParam(value="param1", required=true) String param1,
 
 }

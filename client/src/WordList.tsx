@@ -32,8 +32,12 @@ class WordList extends React.Component<{}, any>{
                 {words.map((word: any) =>
                     <div key={word.id}>
                         {word.englishWord}
+                        &nbsp; : &nbsp;
+                        {word.translatedWord}
                     </div>
                 )}
+            
+
             </div>
         );
     }

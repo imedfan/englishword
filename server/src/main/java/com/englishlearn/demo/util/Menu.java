@@ -26,18 +26,18 @@ public class Menu {
             mainMenu = bfMainMenu.readLine();
 
             switch (mainMenu) {
-                // case "1":
-                //     WriteNewWord.startWrite(pathDic, pathEnglish, pathAnother);
-                //     startMenu(pathDic, pathEnglish, pathAnother);
+                case "1":
+                    WriteNewWord.startWrite(pathDic, pathEnglish, pathAnother);
+                    startMenu(pathDic, pathEnglish, pathAnother);
                 case "2":
                     ReadAndGame.startRemember(pathDic, pathEnglish, pathAnother);
                     startMenu(pathDic, pathEnglish, pathAnother);
                 case "3":
                     ReadAndGame.startTranslate(pathEnglish, pathAnother);
                     startMenu(pathDic, pathEnglish, pathAnother);
-                // case "4":
-                //     Setting.mainMenu(pathDic, pathEnglish, pathAnother);
-                //     startMenu(pathDic, pathEnglish, pathAnother);
+                case "4":
+                    Setting.mainMenu(pathDic, pathEnglish, pathAnother);
+                    startMenu(pathDic, pathEnglish, pathAnother);
                 default: 
                     System.out.println("You need choose menu option");
                     startMenu(pathDic, pathEnglish, pathAnother);

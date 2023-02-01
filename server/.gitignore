@@ -4,6 +4,10 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+
+server/src/main/java/com/englishlearn/demo/util/dic/english.txt
+server/src/main/java/com/englishlearn/demo/util/dic/another.txt
+
 ### STS ###
 .apt_generated
 .classpath

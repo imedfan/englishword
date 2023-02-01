@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import logo from './logo.svg';
 import WordList from './WordList';
+import * as PostFromValues from './PostFromValue';
 
 
 class App extends React.Component<{}, any> {
@@ -35,6 +36,7 @@ class App extends React.Component<{}, any> {
       <div className="App">
 
         <WordList />
+
         
       </div>
     );

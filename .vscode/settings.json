@@ -1,0 +1,24 @@
+{
+    "java.compile.nullAnalysis.mode": "automatic",
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "engloter",
+            "database": "engloter",
+            "username": "root",
+            "password": "1234"
+        }
+    ],
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.project.sourcePaths": [
+        "server\\src\\main\\java",
+        "server\\src\\main\\resources",
+        "server\\src\\test\\java"
+    ]
+}

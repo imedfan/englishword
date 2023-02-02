@@ -11,13 +11,14 @@ public class EngloterApplication {
 
 	public static void main(String[] args) throws IllegalAccessException, IOException {
 
+		SpringApplication.run(EngloterApplication.class, args);
 		String pathDic = "server\\src\\main\\java\\com\\englishlearn\\demo\\util\\dic\\";
         String pathEnglish = "server\\src\\main\\java\\com\\englishlearn\\demo\\util\\dic\\english.txt";
         String pathAnother = "server\\src\\main\\java\\com\\englishlearn\\demo\\util\\dic\\another.txt";
 
-		Menu.startMenu(pathDic, pathEnglish, pathAnother);
+		Menu.startMenu();
 
-		// SpringApplication.run(EngloterApplication.class, args);
+		
 	}
 
 }

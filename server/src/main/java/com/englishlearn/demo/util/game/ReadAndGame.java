@@ -1,9 +1,17 @@
 package com.englishlearn.demo.util.game;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+import org.springframework.stereotype.Service;
 
 import com.englishlearn.demo.util.LineIterator;
 import com.englishlearn.demo.util.Menu;
+
 
 public class ReadAndGame {
 
@@ -70,7 +78,7 @@ public class ReadAndGame {
                         case "CC":
                             System.out.print("\033[H\033[2J");
                             System.out.flush();
-                            Menu.startMenu(pathDic, pathEnglish, pathAnother);
+                            Menu.startMenu();
 
                     }
                 }
@@ -81,7 +89,7 @@ public class ReadAndGame {
                     System.out.println("Words run out");
                     System.out.println("You NiceCount: " + niceCount + ". " + "You ShitCount: " + shitCount + ". ");
                     System.out.println(" ");
-                    Menu.startMenu(pathDic, pathEnglish, pathAnother);
+                    Menu.startMenu();
                 }
 
             } else {
@@ -149,7 +157,7 @@ public class ReadAndGame {
                     } else if (answer.equals("CC")) {
                         System.out.print("\033[H\033[2J");
                         System.out.flush();
-                        Menu.startMenu(answer, pathEnglish, pathAnother);
+                        Menu.startMenu();
                     } else {
                         shitCount++;
                         System.out.print("\033[H\033[2J");

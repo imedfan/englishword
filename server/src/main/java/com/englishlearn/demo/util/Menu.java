@@ -17,8 +17,9 @@ public class Menu {
         System.out.println(" ");
     }
 
-    public static void startMenu(String pathDic, String pathEnglish, String pathAnother ) throws IOException, IllegalAccessException{
+    public static void startMenu() throws IOException, IllegalAccessException{
         String mainMenu = new String();
+        WriteNewWord writeNewWord = new WriteNewWord();
         do{
             printMenu();
 
@@ -27,20 +28,20 @@ public class Menu {
 
             switch (mainMenu) {
                 case "1":
-                    WriteNewWord.startWrite(pathDic, pathEnglish, pathAnother);
-                    startMenu(pathDic, pathEnglish, pathAnother);
-                case "2":
-                    ReadAndGame.startRemember(pathDic, pathEnglish, pathAnother);
-                    startMenu(pathDic, pathEnglish, pathAnother);
-                case "3":
-                    ReadAndGame.startTranslate(pathEnglish, pathAnother);
-                    startMenu(pathDic, pathEnglish, pathAnother);
-                case "4":
-                    Setting.mainMenu(pathDic, pathEnglish, pathAnother);
-                    startMenu(pathDic, pathEnglish, pathAnother);
-                default: 
-                    System.out.println("You need choose menu option");
-                    startMenu(pathDic, pathEnglish, pathAnother);
+                    writeNewWord.startWrite();
+                    startMenu();
+                // case "2":
+                //     ReadAndGame.startRemember(pathDic, pathEnglish, pathAnother);
+                //     startMenu(pathDic, pathEnglish, pathAnother);
+                // case "3":
+                //     ReadAndGame.startTranslate(pathEnglish, pathAnother);
+                //     startMenu(pathDic, pathEnglish, pathAnother);
+                // case "4":
+                //     Setting.mainMenu(pathDic, pathEnglish, pathAnother);
+                //     startMenu(pathDic, pathEnglish, pathAnother);
+                // default: 
+                //     System.out.println("You need choose menu option");
+                //     startMenu(pathDic, pathEnglish, pathAnother);
                 case "e": 
                     System.exit(0);
             }

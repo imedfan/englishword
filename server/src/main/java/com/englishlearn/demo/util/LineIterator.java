@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+import org.springframework.stereotype.Service;
+
+
 public class LineIterator implements Iterator {
     private final BufferedReader bufferedReader;
     private String cachedLine;

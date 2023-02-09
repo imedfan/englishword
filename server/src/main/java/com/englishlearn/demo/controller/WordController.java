@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,12 +35,12 @@ public class WordController {
     // http://localhost:8080/all-word/add?englishWord=hola&translatedWord=aloha
 
     @PostMapping("/all-word/add")
-    public Word addWord(Word word) {
-        return wordService.addWord(word);
+    public void addWord(@RequestBody Word word) {
+        wordService.addWord(word);
     }
 
-    @DeleteMapping("/all-word/delete")
-    public void removeWord(@RequestParam Long id) {
+    @DeleteMapping("/all-word/delete/{id}")
+    public void removeWord(@PathVariable Long id) {
         wordService.deleteWord(id);
     }
 

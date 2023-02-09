@@ -9,7 +9,7 @@ import com.englishlearn.demo.model.entity.Word;
 @Service
 public interface WordService {
 
-    Word addWord(Word word);
+    void addWord(Word word);
     void deleteWord(Long id);
     Word getById(Long id);
     Word editWord(Word word);

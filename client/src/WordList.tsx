@@ -19,6 +19,24 @@ class WordList extends React.Component<{}, any>{
 
     }
 
+    handleDelete = async (id: number) => {
+        try {
+            const response = await fetch(`http://localhost:8080/all-word/delete/${id}`, {
+                method: 'DELETE',
+            });
+    
+            if (response.ok) {
+                this.setState((prevState: { words: Array<any> }) => ({
+                    words: prevState.words.filter((word: any) => word.id !== id),
+                }));
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+
+
     render() {
         const { words, isLoading } = this.state;
 
@@ -34,6 +52,8 @@ class WordList extends React.Component<{}, any>{
                         {word.englishWord}
                         &nbsp; : &nbsp;
                         {word.translatedWord}
+                        &nbsp;  &nbsp;
+                        <button onClick={() => this.handleDelete(word.id)}>Delete</button>
                     </div>
                 )}
             

@@ -18,9 +18,10 @@ public class WordServiceImpl implements WordService {
     private WordRepository wordRep;
 
     @Override
-    public Word addWord(Word word) {
-        Word saveWord = wordRep.saveAndFlush(word);
-        return saveWord;
+    public void addWord(Word word) {
+        // Word saveWord = wordRep.saveAndFlush(word);
+        // return saveWord;
+        wordRep.saveAndFlush(word);
     }
 
     @Override

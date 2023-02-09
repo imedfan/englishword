@@ -25,6 +25,7 @@ class AddWord extends React.Component<Props, State> {
         };
     }
 
+
     handleEnglishWord = (event: React.ChangeEvent<HTMLInputElement>) => {
         this.setState({ word: { ...this.state.word, englishWord: event.target.value } });
     };
@@ -59,6 +60,7 @@ class AddWord extends React.Component<Props, State> {
         } catch (error) {
             console.log(error);
         }
+
     };
 
     render() {
